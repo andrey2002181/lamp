@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лампочка с выключателем</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #lamp {
+            width: 250px;
+            height: 400px;
+            background: url('выкл.png'); /* Изображение выключенной лампы по умолчанию */
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        body, input, textarea {
+            caret-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+<div id="lamp" onclick="toggleLamp()"></div>
+
+<audio id="clickSound" src="off.mp3"></audio>
+
+<script>
+    const lamp = document.getElementById('lamp');
+    const clickSound = document.getElementById('clickSound');
+
+    let sequence = "1101111010101";
+    let index = 0;
+
+    function toggleLamp() {
+        index = 0;
+        playSequence();
+    }
+
+    function playSequence() {
+        if (index < sequence.length) {
+            clickSound.play();
+            const imageUrl = sequence[index] === '1' ? 'вкл.png' : 'выкл.png';
+            lamp.style.backgroundImage = `url('${imageUrl}')`;
+            index++;
+            setTimeout(playSequence, 750);
+        } else {
+            lamp.style.backgroundImage = "url('выкл.png')";
+        }
+    }
+</script>
+
+</body>
+</html>
