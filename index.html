@@ -11,12 +11,20 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            flex-direction: column; /* Добавлено свойство для вертикального расположения элементов */
         }
         #lamp {
             width: 250px;
-            height: 400px;
-            background: url('выкл.png'); /* Изображение выключенной лампы по умолчанию */
-            background-size: cover;
+            height:430px;
+            background: url('выкл.png') center/cover;
+            cursor: pointer;
+        }
+        #nextButton {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
             cursor: pointer;
         }
 
@@ -28,6 +36,7 @@
 <body>
 
 <div id="lamp" onclick="toggleLamp()"></div>
+<button id="nextButton" onclick="redirectToNext()">Далее?</button>
 
 <audio id="clickSound" src="off.mp3"></audio>
 
@@ -53,6 +62,10 @@
         } else {
             lamp.style.backgroundImage = "url('выкл.png')";
         }
+    }
+
+    function redirectToNext() {
+        window.location.href = "https://bit.ly/3OcoGnI";
     }
 </script>
 
